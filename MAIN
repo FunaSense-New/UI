@@ -1,3 +1,5 @@
+local Players = game:GetService("Players")
+
 getgenv().Config = {
 	Invite = "FunaSense.eu",
 	Version = "0.0",
@@ -8,21 +10,23 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/FunaS
 library:init() -- Initalizes Library Do Not Delete This
 
 local Window = library.NewWindow({
-	title = "Informant.Wtf",
+	title = "FunaSense.eu",
 	size = UDim2.new(0, 525, 0, 650)
 })
 
 local tabs = {
-    Tab1 = Window:AddTab("Tab1"),
-	Settings = library:CreateSettingsTab(Window),
+    Aimbot = Window:AddTab("Aimbot"),
+    Visuals = Window:AddTab("Visuals"),
+    Settings = library:CreateSettingsTab(Window),
 }
 
 -- 1 = Set Section Box To The Left
 -- 2 = Set Section Box To The Right
 
 local sections = {
-	Section1 = tabs.Tab1:AddSection("Section1", 1),
-	Section2 = tabs.Tab1:AddSection("Section2", 2),
+	Section1 = tabs.Aimbot:AddSection("Section1", 1),
+	Section2 = tabs.Aimbot:AddSection("Section2", 2),
+	PlayerVisuals = tabs.Visuals:AddSection("Player Visuals", 1),
 }
 
 sections.Section1:AddToggle({
@@ -33,6 +37,29 @@ sections.Section1:AddToggle({
 	risky = true, -- turns text to red and sets label to risky
 	callback = function(lol)
 	    print("Toggle Is Now Set To : ".. lol)
+	end
+})
+
+sections.PlayerVisuals:AddToggle({
+	enabled = true,
+	text = "Toggle1",
+	flag = "Toggle_1",
+	tooltip = "Tooltip1",
+	risky = true, -- turns text to red and sets label to risky
+	callback = function()
+	    for _, Player in ipairs(Players:GetPlayers()) do
+    local Character = Player.Character
+ 
+    if Character then
+        local Highlight = Instance.new("Highlight")
+        Highlight.Parent = Character
+        Highlight.Adornee = Character
+        Highlight.FillTransparency = 1
+        Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+        Highlight.OutlineTransparency = 0
+        Highlight.DepthMode = "Occluded"
+    end
+end
 	end
 })
 
@@ -133,6 +160,4 @@ sections.Section1:AddColor({
     end
 })
 
-library:SendNotification("Notification", 5, Color3.new(255, 0, 0))
-
---Window:SetOpen(true) -- Either Close Or Open Window
+library:SendNotification("Cheat Loaded", 5, Color3.new(255, 0, 0))
