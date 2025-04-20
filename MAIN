@@ -1,10 +1,9 @@
--- Credits To The Original Devs @xz, @goof
 getgenv().Config = {
 	Invite = "FunaSense.eu",
 	Version = "0.0",
 }
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/FunaSense-New/UI/refs/heads/main/UI"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/FunaSense-New/UI/refs/heads/main/Libary"))()
 
 library:init() -- Initalizes Library Do Not Delete This
 
